@@ -5,11 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    android:layout_marginTop="20dp"
+    tools:context=".user_info_Activity">
+    <fragment
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/userInfo"
+        android:name="com.example.finaltest_764928.userInfo_fragment"
+        />
 
-   <fragment
-       android:layout_width="match_parent"
-       android:name="com.example.finaltest_764928.profiles_fragment"
-       android:id="@+id/listview"
-       android:layout_height="wrap_content"/>
 </LinearLayout>
