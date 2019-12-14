@@ -20,6 +20,7 @@ public class TrafficLight_activity extends AppCompatActivity {
     int[] Traficimages = {R.drawable.img1, R.drawable.img2,R.drawable.img3,R.drawable.img4,R.drawable.img5,
             R.drawable.img6,R.drawable.img7,R.drawable.img8,R.drawable.img9};
     int[] correctImages = {R.drawable.img1,R.drawable.img2,R.drawable.img3,R.drawable.img4};
+    int[] clicked = {0,0,0,0,0,0,0,0,0};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,8 +49,26 @@ public class TrafficLight_activity extends AppCompatActivity {
         verify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                int rightCount = 0;
+                int clickedCount = 0;
 
-                Toast.makeText(TrafficLight_activity.this,"fill y0ur fileds", Toast.LENGTH_LONG).show();
+                for (int i =0;i<clicked.length; i++)
+                    if(clicked[i] == 1){
+                        clickedCount +=1;
+                        for(int j=0; j<correctImages.length;j++)
+                        {
+                            if(correctImages[j] == Traficimages[i]){
+                                rightCount +=1;
+                            }
+                        }
+                    }
+                if(rightCount==4 & clickedCount==4 & checkBox.isChecked()) {
+
+                    Toast.makeText(TrafficLight_activity.this, "succesfull", Toast.LENGTH_LONG).show();
+                }
+                else{
+                    Toast.makeText(TrafficLight_activity.this, "not able to reister", Toast.LENGTH_LONG).show();
+                }
             }
         });
 
