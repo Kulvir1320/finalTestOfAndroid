@@ -1,8 +1,9 @@
 package com.example.finaltest_764928;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class UserDetails {
+public class UserDetails implements Serializable {
     private String name;
     private String email;
     private String phone;

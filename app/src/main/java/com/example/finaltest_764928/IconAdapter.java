@@ -40,25 +40,14 @@ public class IconAdapter extends BaseAdapter {
         {
             view = LayoutInflater.from(context).inflate(R.layout.layout_gimage, null);
             ImageView imageView = view.findViewById(R.id.image_view);
-            int[] image = shufflingImages(images);
-            imageView.setBackgroundResource(image[i]);
+            imageView.setBackgroundResource(images[i]);
             // imageView.setImageResource(image[i]);
 
         }
         return view;
 
     }
-    static int[] shufflingImages(int[] arraylist) {
-        Random r = new Random();
-        for(int i = 0; i< 5 ; i++)
-        {
-            int ind = r.nextInt(5);
-            int t = arraylist[ind];
-            arraylist[ind] = arraylist[i];
-            arraylist[i] = t;
-        }
-        return arraylist;
-    }
+
 
 }
 

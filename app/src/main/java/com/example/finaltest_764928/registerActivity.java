@@ -30,6 +30,7 @@ public class registerActivity extends AppCompatActivity {
                              ,email.getText().toString(),phone.getText().toString());
                     Toast.makeText(registerActivity.this,"Save succesfully", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(registerActivity.this,TrafficLight_activity.class);
+                    intent.putExtra("user",user);
                     startActivity(intent);
                 } else {
                    Toast.makeText(registerActivity.this,"fill y0ur fileds", Toast.LENGTH_LONG).show();

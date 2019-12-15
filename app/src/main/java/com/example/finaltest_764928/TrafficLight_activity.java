@@ -2,6 +2,7 @@ package com.example.finaltest_764928;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -20,7 +21,7 @@ public class TrafficLight_activity extends AppCompatActivity {
     int[] Traficimages = {R.drawable.img1, R.drawable.img2,R.drawable.img3,R.drawable.img4,R.drawable.img5,
             R.drawable.img6,R.drawable.img7,R.drawable.img8,R.drawable.img9};
     int[] correctImages = {R.drawable.img1,R.drawable.img2,R.drawable.img3,R.drawable.img4};
-    int[] clicked = {0,0,0,0,0,0,0,0,0};
+    boolean[] clicked = {false, false, false, false, false, false, false, false, false};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,44 +40,75 @@ public class TrafficLight_activity extends AppCompatActivity {
             public void onClick(View view) {
 
                 //Traficimages = func;
-                gridView.setAdapter(iconAdapter);
-                iconAdapter.notifyDataSetChanged();
-            }
 
+                for(int a = 0; a<6; a++)
+                {
+                    int i = Traficimages[a];
+                    Traficimages[a] = Traficimages[a+1];
+                    Traficimages[a+1] = i;
+                }
+               gridView.setAdapter(iconAdapter);
+               iconAdapter.notifyDataSetChanged();
+
+
+
+            }
 
         });
 
         verify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int rightCount = 0;
-                int clickedCount = 0;
+                int match = 0;
+                int tickmark_total = 0;
 
-                for (int i =0;i<clicked.length; i++)
-                    if(clicked[i] == 1){
-                        clickedCount +=1;
-                        for(int j=0; j<correctImages.length;j++)
-                        {
-                            if(correctImages[j] == Traficimages[i]){
-                                rightCount +=1;
+                for (int a = 0; a < clicked.length; a++) {
+                    if (clicked[a] == true) {
+                        tickmark_total++;
+
+
+                        for (int index = 0; index < correctImages.length; index++) {
+                            if (correctImages[index] == Traficimages[a]) {
+                                match += 1;
                             }
                         }
                     }
-                if(rightCount==4 & clickedCount==4 & checkBox.isChecked()) {
+                }
+                if (checkBox.isChecked()) {
 
-                    Toast.makeText(TrafficLight_activity.this, "succesfull", Toast.LENGTH_LONG).show();
+                    if (match == tickmark_total) {
+
+                        Intent intent = getIntent();
+                        UserDetails userDetails = (UserDetails) intent.getSerializableExtra("user");
+                        UserDetails.DetailsOfUser.add(userDetails);
+                        Intent intent1 = new Intent(TrafficLight_activity.this, MainActivity.class);
+                        startActivity(intent1);
+                    }
+
+
+                } else {
+
+                    Toast.makeText(TrafficLight_activity.this, "check box not checked", Toast.LENGTH_SHORT).show();
                 }
-                else{
-                    Toast.makeText(TrafficLight_activity.this, "not able to reister", Toast.LENGTH_LONG).show();
-                }
+
             }
+
+
         });
+
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 ImageView imageView = view.findViewById(R.id.image_view);
+                if (clicked[i] == false){
+
                 imageView.setImageResource(R.drawable.checked);
+                clicked[i] = true;}
+                else{
+                    imageView.setImageResource(0);
+                    clicked[i] = false;
+                }
             }
         });
     }

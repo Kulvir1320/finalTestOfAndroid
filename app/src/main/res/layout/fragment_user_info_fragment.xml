@@ -13,6 +13,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="70dp"
         android:src="@mipmap/ic_launcher"
+        android:id="@+id/userimage"
         />
     <TextView
         android:layout_width="match_parent"
