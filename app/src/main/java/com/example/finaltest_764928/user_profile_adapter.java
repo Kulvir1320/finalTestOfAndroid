@@ -41,9 +41,8 @@ public class user_profile_adapter extends ArrayAdapter {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        View view= convertView;
-        if (view == null)
-            view = layoutInflater.inflate(layoutResource, parent, false);
+        View view = convertView;
+        if (view == null) view = layoutInflater.inflate(layoutResource, parent, false);
 
 ImageView View_image = view.findViewById(R.id.imageView);
 

@@ -42,7 +42,7 @@ public class profiles_fragment extends Fragment {
         // Inflate the layout for this fragment
         this.context = inflater.getContext();
         View view = inflater.inflate(R.layout.fragment_profiles_fragment, container, false);
-       user_profile_adapter userProfileAdapter = new user_profile_adapter(context, UserDetails.DetailsOfUser , R.layout.layout_gimage);
+       user_profile_adapter userProfileAdapter = new user_profile_adapter(context, UserDetails.DetailsOfUser , R.layout.user_profile_layout);
         ListView listView = view.findViewById(R.id.listview);
         listView.setAdapter(userProfileAdapter);
 
