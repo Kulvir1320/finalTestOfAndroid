@@ -25,7 +25,7 @@ public class userInfo_fragment extends Fragment {
         if(view != null) {
             ImageView userimage = view.findViewById(R.id.userimage);
             TextView name = view.findViewById(R.id.name);
-            TextView email = view.findViewById(R.id.email);
+            TextView email = view.findViewById(R.id.gmail);
             TextView phone = view.findViewById(R.id.phoneNumber);
             UserDetails userDetails = UserDetails.DetailsOfUser.get(id);
             name.setText(userDetails.getName());
